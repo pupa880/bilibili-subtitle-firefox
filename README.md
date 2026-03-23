@@ -1,3 +1,34 @@
+## ⚠️ 项目说明
+
+> **本项目由 [viding](https://github.com/viding) 代码辅助完成，可能会有 Bug，请谨慎使用。**
+
+### 原项目地址
+
+本项目基于 [IndieKKY/bilibili-subtitle](https://github.com/IndieKKY/bilibili-subtitle) 修改而来，感谢原作者的开源贡献。
+
+### 版本信息
+
+- **基于版本**: v1.10.6（最后一个支持 Firefox 的版本）
+- **修改日期**: 2025-03-23
+
+### 修复内容
+
+修复了字幕和总结不对应当前视频的问题：
+
+- **问题原因**: B 站 API 更新，字幕获取接口从 `/x/player/v2` 改为 `/x/player/wbi/v2`，导致旧版本无法正确获取当前视频的字幕
+- **修复方案**: 将 `src/chrome/content-script.cjs` 中的 3 处 API 调用从 `/x/player/v2` 更新为 `/x/player/wbi/v2`
+
+### Firefox 安装方法
+
+1. 下载 `bilibili-subtitle-firefox-1.10.6-fixed.xpi` 文件
+2. 打开 Firefox，地址栏输入 `about:debugging#/runtime/this-firefox`
+3. 点击 **"临时载入附加组件"**
+4. 选择下载的 `.xpi` 文件即可安装
+
+**注意**: 由于 Firefox 不支持 `sidePanel` API，此版本使用 **popup 模式**（点击扩展图标打开字幕列表）。
+
+---
+
 ## 简介
 
 哔哩哔哩字幕列表是一个浏览器扩展，旨在提供更高效和可控的视频信息获取方式。
