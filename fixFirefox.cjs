@@ -8,7 +8,10 @@ manifest.action.default_popup = 'popup.html'
 //browser_specific_settings
 manifest.browser_specific_settings = {
   "gecko": {
-    "id": "bilibili-subtitle@indiekky"
+    "id": "bilibili-subtitle@pupa",
+    "data_collection_permissions": {
+      "required": ["none"]
+    }
   }
 }
 //background
