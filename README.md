@@ -20,12 +20,7 @@
 
 ### Firefox 安装方法
 
-1. 下载 `bilibili-subtitle-firefox-1.10.6-fixed.xpi` 文件
-2. 打开 Firefox，地址栏输入 `about:debugging#/runtime/this-firefox`
-3. 点击 **"临时载入附加组件"**
-4. 选择下载的 `.xpi` 文件即可安装
-
-**注意**: 由于 Firefox 不支持 `sidePanel` API，此版本使用 **popup 模式**（点击扩展图标打开字幕列表）。
+[Firefox商店](https://addons.mozilla.org/en-US/firefox/addon/%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9%E5%AD%97%E5%B9%95%E5%88%97%E8%A1%A8-update/)
 
 
 以下为原简介
