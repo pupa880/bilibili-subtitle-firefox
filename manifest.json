@@ -20,7 +20,7 @@
   ],
   "background": {
     "type": "module",
-    "scripts": ["src/chrome/background.ts"]
+    "scripts": ["src/chrome/background.js"]
   },
   "content_scripts": [
     {
