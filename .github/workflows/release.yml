@@ -1,0 +1,55 @@
+name: Release Extension
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Firefox extension
+        run: pnpm run build
+
+      - name: Zip Firefox extension
+        run: |
+          cd dist
+          zip -r ../bilibili-subtitle-firefox.zip ./*
+          cd ..
+
+      - name: Sign Firefox XPI
+        env:
+          WEB_EXT_API_KEY: ${{ secrets.AMO_API_KEY }}
+          WEB_EXT_API_SECRET: ${{ secrets.AMO_API_SECRET }}
+        run: |
+          pnpm add -D web-ext
+          pnpm web-ext sign --source-dir ./dist --artifacts-dir ./signed
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            bilibili-subtitle-firefox.zip
+            signed/*.xpi
+          generate_release_notes: true

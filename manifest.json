@@ -2,7 +2,10 @@
   "name": "哔哩哔哩字幕列表",
   "browser_specific_settings": {
     "gecko": {
-      "data_collection_permissions": []
+      "id": "bilibili-subtitle@pupa",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
     }
   },
   "description": "显示B站视频的字幕列表,可点击跳转与下载字幕,并支持翻译和总结字幕!",
@@ -16,7 +19,8 @@
     "http://127.0.0.1/*"
   ],
   "background": {
-    "service_worker": "src/chrome/background.ts"
+    "type": "module",
+    "scripts": ["src/chrome/background.ts"]
   },
   "content_scripts": [
     {
@@ -31,12 +35,18 @@
     "128": "favicon-128x128.png"
   },
   "action": {
-    "default_popup": "index.html",
+    "default_popup": "popup.html",
     "default_icon": {
       "16": "favicon-16x16.png",
       "32": "favicon-32x32.png",
       "48": "favicon-48x48.png",
       "128": "favicon-128x128.png"
     }
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["index.html"],
+      "matches": ["https://www.bilibili.com/*"]
+    }
+  ]
 }
