@@ -27,7 +27,7 @@ jobs:
           cache: 'pnpm'
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --config.onlyBuiltDependencies=esbuild
 
       - name: Build Firefox extension
         run: pnpm run build
@@ -43,7 +43,7 @@ jobs:
           WEB_EXT_API_KEY: ${{ secrets.AMO_API_KEY }}
           WEB_EXT_API_SECRET: ${{ secrets.AMO_API_SECRET }}
         run: |
-          pnpm add -D web-ext
+          pnpm add -D web-ext --config.onlyBuiltDependencies=esbuild
           pnpm web-ext sign --source-dir ./dist --artifacts-dir ./signed
 
       - name: Create GitHub Release
