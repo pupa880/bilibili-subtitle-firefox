@@ -43,8 +43,8 @@ jobs:
           WEB_EXT_API_KEY: ${{ secrets.AMO_API_KEY }}
           WEB_EXT_API_SECRET: ${{ secrets.AMO_API_SECRET }}
         run: |
-          pnpm add -D web-ext --config.onlyBuiltDependencies=esbuild
-          pnpm web-ext sign --source-dir ./dist --artifacts-dir ./signed
+          pnpm add -D web-ext
+          pnpm web-ext sign --source-dir ./dist --artifacts-dir ./signed --channel=listed
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
